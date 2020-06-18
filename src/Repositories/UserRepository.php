@@ -17,8 +17,7 @@ class UserRepository implements UserRepositoryInterface
         $password,
         $grantType,
         ClientEntityInterface $clientEntity
-    )
-    {
+    ) {
         $authIdentifier = Model::verifyUserForGrant($username, $password, $grantType, $clientEntity);
 
         if (!$authIdentifier) {

@@ -27,8 +27,7 @@ class ScopeRepository implements ScopeRepositoryInterface
         $grantType,
         ClientEntityInterface $clientEntity,
         $userIdentifier = null
-    )
-    {
+    ) {
         return Manager::filterScopes($scopes, $grantType, $clientEntity, $userIdentifier);
     }
 }
