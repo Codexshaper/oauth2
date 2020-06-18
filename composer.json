@@ -1,5 +1,5 @@
 {
-    "name": "codexshaper/php-oauth2",
+    "name": "codexshaper/oauth2",
     "description": "OAuth2 authentication for PHP.",
     "keywords": [
         "php", 
@@ -11,10 +11,10 @@
         "league-oauth2-server"
     ],
     "license": "MIT",
-    "homepage": "https://github.com/Codexshaper/php-oauth2",
+    "homepage": "https://github.com/Codexshaper/oauth2",
     "support": {
-        "issues": "https://github.com/Codexshaper/php-oauth2/issues",
-        "source": "https://github.com/Codexshaper/php-oauth2"
+        "issues": "https://github.com/Codexshaper/oauth2/issues",
+        "source": "https://github.com/Codexshaper/oauth2"
     },
     "authors": [
         {
