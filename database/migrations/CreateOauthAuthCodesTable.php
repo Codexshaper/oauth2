@@ -3,7 +3,6 @@
 use CodexShaper\Database\Facades\Schema;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class CreateOauthAuthCodesTable extends Migration
 {
