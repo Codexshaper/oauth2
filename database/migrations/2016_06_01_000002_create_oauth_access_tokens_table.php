@@ -13,16 +13,18 @@ class CreateOauthAccessTokensTable extends Migration
      */
     public function up()
     {
-        Schema::create('oauth_access_tokens', function (Blueprint $table) {
-            $table->string('id', 100)->primary();
-            $table->bigInteger('user_id')->index()->nullable();
-            $table->unsignedInteger('client_id');
-            $table->string('name')->nullable();
-            $table->text('scopes')->nullable();
-            $table->boolean('revoked');
-            $table->timestamps();
-            $table->dateTime('expires_at')->nullable();
-        });
+        if (!Schema::hasTable('oauth_access_tokens')) {
+            Schema::create('oauth_access_tokens', function (Blueprint $table) {
+                $table->string('id', 100)->primary();
+                $table->bigInteger('user_id')->index()->nullable();
+                $table->unsignedInteger('client_id');
+                $table->string('name')->nullable();
+                $table->text('scopes')->nullable();
+                $table->boolean('revoked');
+                $table->timestamps();
+                $table->dateTime('expires_at')->nullable();
+            });
+        }
     }
 
     /**
@@ -32,6 +34,8 @@ class CreateOauthAccessTokensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('oauth_access_tokens');
+        if (Schema::hasTable('oauth_access_tokens')) {
+            Schema::dropIfExists('oauth_access_tokens');
+        }
     }
 }

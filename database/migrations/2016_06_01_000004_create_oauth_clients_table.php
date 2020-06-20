@@ -13,18 +13,20 @@ class CreateOauthClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('oauth_clients', function (Blueprint $table) {
-            $table->increments('id');
-            $table->bigInteger('user_id')->index()->nullable();
-            $table->string('name');
-            $table->string('secret', 100)->nullable();
-            $table->text('redirect');
-            $table->boolean('personal_access_client')->default(0);
-            $table->boolean('password_client')->default(0);
-            $table->boolean('authorization_code_client')->default(0);
-            $table->boolean('revoked')->default(false);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('oauth_clients')) {
+            Schema::create('oauth_clients', function (Blueprint $table) {
+                $table->increments('id');
+                $table->bigInteger('user_id')->index()->nullable();
+                $table->string('name');
+                $table->string('secret', 100)->nullable();
+                $table->text('redirect');
+                $table->boolean('personal_access_client')->default(0);
+                $table->boolean('password_client')->default(0);
+                $table->boolean('authorization_code_client')->default(0);
+                $table->boolean('revoked')->default(false);
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -34,6 +36,8 @@ class CreateOauthClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('oauth_clients');
+        if (Schema::hasTable('oauth_clients')) {
+            Schema::dropIfExists('oauth_clients');
+        }
     }
 }
