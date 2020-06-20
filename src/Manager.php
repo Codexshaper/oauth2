@@ -316,8 +316,70 @@ class Manager
         return $client->user_id;
     }
 
+    /**
+     * Load all routes.
+     *
+     * @return void
+     */
     public static function routes()
     {
         require __DIR__.'/../routes/oauth.php';
+    }
+
+    /**
+     * Migrate tables.
+     *
+     * @param string $dir
+     *
+     * @return void
+     */
+    public static function migrate($dir = null)
+    {
+        if (is_null($dir)) {
+            $dir = __DIR__.'/../database/migrations';
+        }
+
+        foreach (glob($dir.'/*.php') as $file) {
+            require_once $file;
+            $table = pathinfo($file)['filename'];
+            (new $table())->up();
+        }
+    }
+
+    /**
+     * Drop tables.
+     *
+     * @param string $dir
+     *
+     * @return void
+     */
+    public static function rollback($dir = null)
+    {
+        if (is_null($dir)) {
+            $dir = __DIR__.'/../database/migrations';
+        }
+
+        foreach (glob($dir.'/*.php') as $file) {
+            require_once $file;
+            $table = pathinfo($file)['filename'];
+            (new $table())->down();
+        }
+    }
+
+    /**
+     * Drop and migrate fresh tables.
+     *
+     * @param string $dir
+     *
+     * @return void
+     */
+    public static function refresh($dir = null)
+    {
+        if (is_null($dir)) {
+            $dir = __DIR__.'/../database/migrations';
+        }
+
+        static::rollback($dir);
+        static::migrate($dir);
     }
 }
