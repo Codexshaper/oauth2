@@ -4,7 +4,6 @@ namespace CodexShaper\OAuth2\Server;
 
 use Carbon\Carbon;
 use CodexShaper\OAuth2\Server\Entities\Client as ClientEntity;
-use CodexShaper\OAuth2\Server\Manager;
 use DateTime;
 
 class Model

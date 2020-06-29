@@ -23,7 +23,6 @@ class CreateOauthAuthCodesTable extends Migration
                 $table->dateTime('expires_at')->nullable();
             });
         }
-        
     }
 
     /**
@@ -33,7 +32,8 @@ class CreateOauthAuthCodesTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('oauth_auth_codes')) {}
+        if (Schema::hasTable('oauth_auth_codes')) {
+        }
         Schema::dropIfExists('oauth_auth_codes');
     }
 }
