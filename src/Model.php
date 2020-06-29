@@ -151,7 +151,8 @@ class Model
             return false;
         }
 
-        Manager::setScopes($record->scopes);
+        $scopes = is_array($record->scopes) ? $record->scopes : [];
+        Manager::setScopes($scopes);
 
         return !$record->isConfidential() || hash_equals($record->secret, (string) $clientSecret);
     }
