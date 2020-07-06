@@ -45,7 +45,7 @@ class Client extends Model
     /**
      * Enable skip authorization.
      *
-     * @var string
+     * @var boolean
      */
     protected static $skipsAuthorization = false;
 
