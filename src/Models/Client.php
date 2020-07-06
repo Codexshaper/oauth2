@@ -43,6 +43,13 @@ class Client extends Model
     ];
 
     /**
+     * Enable skip authorization.
+     *
+     * @var string
+     */
+    protected static $skipsAuthorization = false;
+
+    /**
      * Get the user that the client belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -79,7 +86,17 @@ class Client extends Model
      */
     public function isSkipsAuthorization()
     {
-        return true;
+        return static::$skipsAuthorization;
+    }
+
+    /**
+     * Enable or disable skip authorization.
+     *
+     * @return void
+     */
+    public static function setSkipsAuthorization($skipsAuthorization = false)
+    {
+        static::$skipsAuthorization = (bool) $skipsAuthorization;
     }
 
     /**
