@@ -48,7 +48,7 @@ class Manager
      *
      * @var string
      */
-    protected $isEnableImplicitGrant = false;
+    protected static $isEnableImplicitGrant = false;
 
     /**
      * Refresh token expire at.
@@ -199,7 +199,7 @@ class Manager
         $this->enablePasswordGrant();
         $this->enableRefreshTokenGrant();
 
-        if ($this->isEnableImplicitGrant) {
+        if (static::$isEnableImplicitGrant) {
             $this->server->enableGrantType(
                 new ImplicitGrant(new DateInterval(static::$tokensExpireAt)),
                 new DateInterval(static::$tokensExpireAt) // access tokens will expire after 1 hour
@@ -264,6 +264,18 @@ class Manager
             $refreshTokenGrant,
             new \DateInterval(static::$tokensExpireAt) // new access tokens will expire after an hour
         );
+    }
+
+    /**
+     * Enable Implicit Grant.
+     *
+     * @param bool $isImplicit
+     *
+     * @return void
+     */
+    protected function enableImplicitGrantType($isImplicit = true)
+    {
+        static::$isEnableImplicitGrant = $isImplicit;
     }
 
     /**
