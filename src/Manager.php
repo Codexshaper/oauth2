@@ -273,7 +273,7 @@ class Manager
      *
      * @return void
      */
-    protected function enableImplicitGrantType($isImplicit = true)
+    public function enableImplicitGrantType($isImplicit = true)
     {
         static::$isEnableImplicitGrant = $isImplicit;
     }
