@@ -22,7 +22,7 @@ class ClientController extends Controller
 
             return wp_send_json(json_decode($response->getBody()), 200);
         } catch (\Exception $e) {
-            return $exception->generateHttpResponse($response);
+            return wp_send_json(['errors' => [$ex->getMessage()]], 404);
         }
     }
 
